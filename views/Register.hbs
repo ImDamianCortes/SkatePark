@@ -3,36 +3,38 @@
 <div class="py-4">
   <h2>Registro</h2>
   <hr class="w-50 mx-auto" />
-
+  {{#if error}}
+  <div class="alert alert-danger w-50 mx-auto">{{error}}</div>
+  {{/if}}
   <form action="/skatepark/register" method="post" enctype="multipart/form-data">
     <div class="form-group row w-50 m-auto">
       <div class="form-group col-12 col-sm-6">
         <label>Email</label>
-        <input class="form-control m-auto" name="email" required/>
+        <input class="form-control m-auto" value="{{data.email}}" name="email" required />
       </div>
       <div class="form-group col-12 col-sm-6">
         <label>Nombre</label>
-        <input class="form-control m-auto" name="nombre" required/>
+        <input class="form-control m-auto" value="{{data.nombre}}" name="nombre" required />
       </div>
       <div class="form-group col-12 col-sm-6">
         <label>Password</label>
-        <input class="form-control m-auto" name="password" required/>
+        <input type="password" class="form-control m-auto" name="password" required />
       </div>
       <div class="form-group col-12 col-sm-6">
         <label>Repita la password</label>
-        <input class="form-control m-auto" name="password__confirmation" required/>
+        <input class="form-control m-auto" name="password__confirmation" required />
       </div>
       <div class="form-group col-12 col-sm-6">
         <label>Años de experiencia</label>
-        <input class="form-control m-auto" name="experiencia" required/>
+        <input class="form-control m-auto" value="{{data.experiencia}}" name="experiencia" required />
       </div>
       <div class="form-group col-12 col-sm-6">
         <label>Especialidad</label>
-        <input class="form-control m-auto" name="especialidad" required/>
+        <input class="form-control m-auto" value="{{data.especialidad}}" name="especialidad" required />
       </div>
       <div class="form-group col-12 col-sm-12 mt-4">
         <label>Foto de perfil</label>
-        <input type="file" name="foto" required/>
+        <input type="file" name="foto" required />
       </div>
     </div>
     <button id="register__skatepark" class="btn btn-info my-4">Registrarme</button>

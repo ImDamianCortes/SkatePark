@@ -1,3 +1,4 @@
+const res = require('express/lib/response');
 const { Pool } = require('pg');
 
 const pool = new Pool({
@@ -49,11 +50,23 @@ const getSkater = async (email, password) => {
 const updateSkater = async (email, consulta) => {
     console.log(email, consulta);
     const update = {
-        text: `UPDATE skaters SET nombre = $1, password = $2, anos_experiencia = $3, especialidad = $4 WHERE email = ${email} RETURNING *`,
-        values: consulta
+        text: `UPDATE skaters SET nombre = $1, password = $2, anos_experiencia = $3, especialidad = $4 WHERE email = $5 RETURNING *`,
+        values: consulta.concat(email)
     }
+
     const result = await pool.query(update);
+    console.log(result.rows[0]);
     return result.rows[0];
+}
+
+deleteSkater = async (email) => {
+    console.log(email);
+    const deleteSkater = {
+        text: `DELETE FROM skaters WHERE email = $1 RETURNING *`,
+        values: [email]
+    }
+    const skater = await pool.query(deleteSkater)
+    return 'Skater eliminado';
 }
 
 
@@ -62,5 +75,6 @@ module.exports = {
     getSkaters,
     setSkaterStatus,
     getSkater,
-    updateSkater
+    updateSkater,
+    deleteSkater
 }
