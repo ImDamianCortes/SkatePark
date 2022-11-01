@@ -1,3 +1,28 @@
+# SkatePark
+
+### Installation
+
+clone the repo
+
+```
+git clone https://github.com/ImDamianCortes/SkatePark.git
+```
+
+install dependencies:
+
+```
+npm install
+```
+
+### Run the app
+
+```
+npm run dev
+```
+
+
+
+
 dependencias
 
 npm install express --save
